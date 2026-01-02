@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>loading...</title>
+<style>
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+  overflow: hidden;
+}
+
+#tap {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+video {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+</style>
+</head>
+<body>
+
+<video id="v" playsinline preload="auto">
+  <source src="scary.mp4" type="video/mp4">
+</video>
+
+<div id="tap"></div>
+
+<script>
+const v = document.getElementById("v");
+
+document.getElementById("tap").addEventListener("touchstart", start, { once: true });
+document.getElementById("tap").addEventListener("click", start, { once: true });
+
+function start() {
+  v.muted = false;
+  v.volume = 1.0;
+  v.play();
+  v.requestFullscreen?.();
+}
+</script>
+
+</body>
+</html>
